@@ -18,21 +18,9 @@ from ..utils import (
 )
 
 
-class SandiaIE(InfoExtractor):
-    IE_DESC = 'Sandia National Laboratories'
-    _VALID_URL = r'https?://digitalops\.sandia\.gov/Mediasite/Play/(?P<id>[0-9a-f]+)'
-    _TEST = {
-        'url': 'http://digitalops.sandia.gov/Mediasite/Play/24aace4429fc450fb5b38cdbf424a66e1d',
-        'md5': '9422edc9b9a60151727e4b6d8bef393d',
-        'info_dict': {
-            'id': '24aace4429fc450fb5b38cdbf424a66e1d',
-            'ext': 'mp4',
-            'title': 'Xyce Software Training - Section 1',
-            'description': 're:(?s)SAND Number: SAND 2013-7800.{200,}',
-            'upload_date': '20120904',
-            'duration': 7794,
-        }
-    }
+class NYULawIE(InfoExtractor):
+    IE_DESC = 'NYU Law (Mediasite)'
+    _VALID_URL = r'https?://nyulaw\.mediasite\.com/Mediasite/Play/(?P<id>[0-9a-f]+)'
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
