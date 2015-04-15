@@ -18,20 +18,19 @@ from ..utils import (
 )
 
 
-class NYULawIE(InfoExtractor):
+class SandiaIE(InfoExtractor):
     IE_DESC = 'NYU Law (Mediasite)'
-    _VALID_URL = r'https?://nyulaw\.mediasite\.com/Mediasite/Play/(?P<id>[0-9a-f]+)'
+    _VALID_URL = r'http?://nyulaw\.mediasite\.com/mediasite/Play/(?P<id>[0-9a-f]+)'
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
         req = compat_urllib_request.Request(url)
-        req.add_header('Cookie', 'MediasitePlayerCaps=ClientPlugins=4')
+        req.add_header('Cookie', 'MediasitePlayerCaps=ClientPlugins=12')
         webpage = self._download_webpage(req, video_id)
 
         js_path = self._search_regex(
-            r'<script type="text/javascript" src="(/Mediasite/FileServer/Presentation/[^"]+)"',
-            webpage, 'JS code URL')
+            r'<script type="text/javascript" src="(/mediasite/FileServer/Presentation/[^"]+)"', webpage, 'JS code URL')
         js_url = compat_urlparse.urljoin(url, js_path)
 
         js_code = self._download_webpage(
